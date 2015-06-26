@@ -9,7 +9,7 @@
 
     <ul>
         @foreach($categories as $category)
-            <l1>
+            <li>
                 <div>
                     <div>
                         <h4>Name</h4>
@@ -20,7 +20,7 @@
                         {{ $category->description }}
                     </div>
                 </div>
-            </l1>
+            </li>
         @endforeach
     </ul>
 </body>
