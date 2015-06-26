@@ -16,6 +16,14 @@ Route::get('/', function () {
 
 });
 
+get('/exemplo',function(){
+    return 'olá esse é um exemplo';
+});
+
+Route::match(['get','post'],'/exemplo2',function(){
+    return 'Exemplo de rota match';
+});
+
 Route::get('/admin/categories',['as'=>'categories','uses'=>'AdminCategoriesController@index']);
 Route::get('/admin/products',['as'=>'products','uses'=>'AdminProductsController@index']);
 
