@@ -17,5 +17,6 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/categories','AdminCategoriesController@index');
+Route::get('/admin/products','AdminProductsController@index');
 
 
