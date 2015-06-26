@@ -20,7 +20,7 @@
                     {{ $product->description }}
                 </div>
                 <div>
-                    <h4>Price</h4>
+                    <h4>Price R$</h4>
                     {{ $product->price }}
                 </div>
             </div>
