@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>CodeCommerce</title>
 
         <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -45,7 +45,10 @@
         <div class="container">
             <div class="content">
                 <div class="title">CodeCommerce</div>
-
+                <div>
+                    <a href="{{route('categories')}}">Categories</a>
+                    <a href="{{route('products')}}">Products</a>
+                </div>
             </div>
         </div>
     </body>

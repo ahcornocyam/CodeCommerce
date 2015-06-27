@@ -11,6 +11,11 @@
 |
 */
 
+
+
+//pattern para quando for um id, sempre aceitar numeros
+Route::pattern('id','[1-9]+');
+
 Route::get('/', function () {
     return view('welcome');
 
@@ -27,4 +32,17 @@ Route::match(['get','post'],'/exemplo2',function(){
 Route::get('/admin/categories',['as'=>'categories','uses'=>'AdminCategoriesController@index']);
 Route::get('/admin/products',['as'=>'products','uses'=>'AdminProductsController@index']);
 
+
+//rota usando parametros
+Route::get('/user/{id?}',function($id = null){
+    $resp = null;
+    ($id)? $resp = "Oi seu id é $id": $resp = 'não possui id';
+    return $resp;
+});
+
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('funcionario',function(){
+        return 'area do funcionario';
+    });
+});
 
