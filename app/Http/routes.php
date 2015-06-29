@@ -21,16 +21,11 @@ Route::get('/', function () {
 
 });
 
-get('/exemplo',function(){
-    return 'olá esse é um exemplo';
-});
-
 Route::match(['get','post'],'/exemplo2',function(){
     return 'Exemplo de rota match';
 });
 
-Route::get('/admin/categories',['as'=>'categories','uses'=>'AdminCategoriesController@index']);
-Route::get('/admin/products',['as'=>'products','uses'=>'AdminProductsController@index']);
+
 
 
 //rota usando parametros
@@ -41,8 +36,28 @@ Route::get('/user/{id?}',function($id = null){
 });
 
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('funcionario',function(){
-        return 'area do funcionario';
-    });
-});
 
+
+    //rotas de categorias
+    Route::group(['prefix'=>'categories','as'=>'categories'],function(){
+        Route::get('/','AdminCategoriesController@index');
+        Route::get('/{id?}',function($id = null){
+            $category = new \CodeCommerce\Category();
+            $c = $category->findOrNew($id);
+            return $c->name;
+        });
+    });
+
+
+    //rotas de produto
+    Route::group(['prefix'=>'products', 'as'=> 'products'],function(){
+        Route::get('/','AdminProductsController@index');
+        Route::get('/{id?}',function($id = null){
+            $product = new \CodeCommerce\Product();
+            $p = $product->findOrNew($id);
+            return $p->name;
+        });
+
+    });
+
+});
