@@ -20,4 +20,11 @@ class AdminProductsController extends Controller
         $products = $this->products->all();
         return view('product.product',compact('products'));
     }
+
+    public function detail($id){
+        $product = $this->products->find($id);
+        $resp = null;
+        ($product)? $resp = $product->all : $resp = 'Id nao encontrada';
+        return $resp;
+    }
 }

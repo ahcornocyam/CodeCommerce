@@ -21,19 +21,6 @@ Route::get('/', function () {
 
 });
 
-Route::match(['get','post'],'/exemplo2',function(){
-    return 'Exemplo de rota match';
-});
-
-
-
-
-//rota usando parametros
-Route::get('/user/{id?}',function($id = null){
-    $resp = null;
-    ($id)? $resp = "Oi seu id é $id": $resp = 'não possui id';
-    return $resp;
-});
 
 Route::group(['prefix'=>'admin'],function(){
 
@@ -41,23 +28,14 @@ Route::group(['prefix'=>'admin'],function(){
     //rotas de categorias
     Route::group(['prefix'=>'categories','as'=>'categories'],function(){
         Route::get('/','AdminCategoriesController@index');
-        Route::get('/{id?}',function($id = null){
-            $category = new \CodeCommerce\Category();
-            $c = $category->findOrNew($id);
-            return $c->name;
-        });
+        Route::get('/{id?}','AdminCategoriesController@detail');
     });
 
 
     //rotas de produto
     Route::group(['prefix'=>'products', 'as'=> 'products'],function(){
         Route::get('/','AdminProductsController@index');
-        Route::get('/{id?}',function($id = null){
-            $product = new \CodeCommerce\Product();
-            $p = $product->findOrNew($id);
-            return $p->name;
-        });
-
+        Route::get('/{id?}','AdminProductsController@detail');
     });
 
 });
