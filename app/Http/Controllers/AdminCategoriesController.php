@@ -23,7 +23,7 @@ class AdminCategoriesController extends Controller
         return view('category.category',compact('categories'));
     }
 
-    public function detail($id){
+    public function read($id){
         $category = $this->categories->find($id);
         ($category)? $resp = $category->all(): $resp = 'Id nao encontrada';
         return $resp;
