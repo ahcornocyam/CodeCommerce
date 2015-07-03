@@ -11,17 +11,7 @@
                         @endforeach
                     </ul>
                 @endif
-                {!! Form::open(['url'=>'categories']) !!}
-                    <div class="form-group">
-                        {!! Form::label('name','Name:')!!}
-                        {!! Form::text('name',null,['class'=>'form-control'])!!}
-                        {!! Form::label('description','Description:')!!}
-                        {!! Form::textarea('description',null,['class'=>'form-control']) !!}
-                        {!! Form::submit('Save Category',['class'=>'form-control btn btn-primary']) !!}
-                    </div>
-                {!! Form::close() !!}
-
-
+                @include('category.form')
             </div>
         </div>
     @endsection
