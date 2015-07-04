@@ -45,7 +45,7 @@ class CategoriesController extends Controller
     }
 
     public function update(Requests\CategoryRequest $request, $id){
-        $this->categoryModel->find($id)->update($request->all());
+        $this       ->categoryModel->find($id)->update($request->all());
         return redirect()->route('categories');
 
     }
