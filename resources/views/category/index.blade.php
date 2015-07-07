@@ -3,6 +3,9 @@
         <div class="container-fluid">
             <div class="panel panel-default">
                 <h1>Categories List</h1>
+
+                <a href="{{route('categories.create')}}" class="btn btn-default">create category</a>
+
                 <table class="table  table-striped table-hover">
                     <tr>
                         <th>ID</th>
@@ -22,7 +25,9 @@
                     </tr>
                     @endforeach
                 </table>
+                <div class="text-center">
+                    {!! $categories->render() !!}
+                </div>
             </div>
-            <a href="{{route('categories.create')}}" class="btn btn-default">create category</a>
         </div>
     @endsection

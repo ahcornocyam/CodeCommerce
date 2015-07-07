@@ -3,12 +3,16 @@
         <div class="container-fluid">
             <div class="panel panel-default">
                 <h1>Products List</h1>
+
+                <a href="{{ route('products.create') }}" class="btn btn-default">create product</a>
+
                 <table class="table  table-striped table-hover">
                     <tr>
                         <th>ID</th>
                         <th>NAME</th>
                         <th>DESCRIPTION</th>
                         <th>PRICE</th>
+                        <th>CATEGORY</th>
                         <th>FEATURED</th>
                         <th>RECOMMEND</th>
                         <th>ACTION</th>
@@ -19,6 +23,7 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td>{{ ($product->featured == 1)? 'yes' : 'no' }}</td>
                         <td>{{ ($product->recommend == 1)? 'yes': 'no' }}</td>
                         <td>
@@ -28,7 +33,9 @@
                     </tr>
                     @endforeach
                 </table>
+                <div class="text-center">
+                    {!! $products->render() !!}
+                </div>
             </div>
-            <a href="{{ route('products.create') }}" class="btn btn-default">create product</a>
         </div>
     @endsection

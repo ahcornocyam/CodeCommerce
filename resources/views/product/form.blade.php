@@ -6,6 +6,10 @@
     @endif
     <div class="well-lg">
         <div class="form-group-lg">
+            {!! Form::label('category','Category:')!!}
+            {!! Form::select('category_id',$categories,isset($product->category_id)? $product->category_id : null ,['class'=>'form-control'])!!}
+        </div>
+        <div class="form-group-lg">
             {!! Form::label('name','Name:')!!}
             {!! Form::text('name',isset($product->name)? $product->name : null ,['class'=>'form-control'])!!}
         </div>
@@ -20,16 +24,17 @@
 
         <div class="form-group-lg">
             {!! Form::label('featured','Featured:')!!}
-            {!! Form::checkbox('featured',1,($product->featured == 1)? true : false ) !!}
+            {!! Form::checkbox('featured',1,(isset($product->featured))? true : false ) !!}
 
         </div>
         <div class="form-group-lg">
             {!! Form::label('recommend','Recommend:')!!}
-            {!! Form::checkbox('recommend',1,($product->recommend == 1)? true : false ) !!}
+            {!! Form::checkbox('recommend',1,(isset($product->recommend))? true : false ) !!}
 
         </div>
         <div class="form-group-lg">
-            {!! Form::submit('Save Product',['class'=>'form-control btn btn-primary']) !!}
+            {!! Form::submit('Save Product',['class'=>'btn btn-primary']) !!}
+            <a href="{{ route('products') }}" class="btn btn-default">Back</a>
         </div>
 
     </div>
