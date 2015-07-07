@@ -23,6 +23,6 @@
                     @endforeach
                 </table>
             </div>
-            <a href="{{route('categories.create')}}">create category</a>
+            <a href="{{route('categories.create')}}" class="btn btn-default">create category</a>
         </div>
     @endsection

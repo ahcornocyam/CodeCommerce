@@ -29,6 +29,6 @@
                     @endforeach
                 </table>
             </div>
-            <a href="{{ route('products.create') }}">create product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-default">create product</a>
         </div>
     @endsection
