@@ -18,7 +18,8 @@ class CategoriesController extends Controller
         $this       -> categoryModel = $categories;
     }
     public function index(){
-        $categories = $this->categoryModel->all();
+        $categories = $this->categoryModel
+                            ->all();
         return view('category.index',compact('categories'));
     }
 
