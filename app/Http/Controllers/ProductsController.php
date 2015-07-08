@@ -19,13 +19,19 @@ class ProductsController extends Controller
      */
 
     public function __construct(Product $producs){
+
         $this->productModel = $producs;
+
     }
     public function index()
     {
-        $products = $this->productModel->paginate(10);
+
+        $products = $this->productModel
+                         ->paginate(10);
 
         return view('product.index',compact('products'));
+
+
     }
 
     /**
@@ -35,8 +41,11 @@ class ProductsController extends Controller
      */
     public function create(Category $category)
     {
+
         $categories = $category->lists('name','id');
+
         return view('product.create',compact('categories'));
+
     }
 
     /**
@@ -46,8 +55,10 @@ class ProductsController extends Controller
      */
     public function store(Requests\ProductRequest $request)
     {
+
         $input = $request->all();
-        $product = $this->productModel->fill($input);
+        $product = $this->productModel
+                        ->fill($input);
         $product->save();
         return redirect()->route('products');
 
@@ -62,9 +73,12 @@ class ProductsController extends Controller
     public function edit($id, Category $category)
     {
         $categories = $category->lists('name','id');
-        $product    = $this->productModel->find($id);
+
+        $product    = $this->productModel
+                            ->find($id);
 
         return view('product.edit',compact('product','categories'));
+
     }
 
     /**
@@ -75,15 +89,21 @@ class ProductsController extends Controller
      */
     public function update(Requests\ProductRequest $request ,$id)
     {
+
         $input      = $request->all();
+
         if(!array_key_exists('featured',$input)){
            $input['featured']       = 0;
         }
+
         if(!array_key_exists('recommend',$input)){
             $input['recommend']     = 0;
         }
-        $this       ->productModel->find($id)->update($input);
+
+        $this       ->productModel->find($id)
+                                  ->update($input);
         return redirect()->route('products');
+
     }
 
     /**
@@ -94,7 +114,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $product        = $this->productModel->find($id)->delete();
+
+        $product        = $this->productModel->find($id)
+                                             ->delete();
         return redirect()->route('products');
+
     }
 }

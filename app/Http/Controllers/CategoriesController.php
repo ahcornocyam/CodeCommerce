@@ -15,38 +15,58 @@ class CategoriesController extends Controller
     private $categoryModel;
 
     public function __construct(Category $categories){
+
         $this       -> categoryModel = $categories;
+
     }
     public function index(){
+
         $categories = $this->categoryModel
                             ->paginate(10);
+
         return view('category.index',compact('categories'));
+
     }
 
     public function create(){
+
         return view('category.create');
+
     }
 
     public function store(Requests\CategoryRequest $request){
+
         $input      = $request->all();
-        $category   = $this->categoryModel->fill($input);
+        $category   = $this->categoryModel
+                            ->fill($input);
         $category   -> save();
+
         return redirect()->route('categories');
+
     }
 
     public function destroy($id){
-        $this->categoryModel->find($id)->delete();
+
+        $this->categoryModel->find($id)
+                            ->delete();
+
         return redirect()->route('categories');
     }
 
     public function edit($id){
 
-        $category   = $this->categoryModel->find($id);
+        $category   = $this->categoryModel
+                            ->find($id);
+
         return view('category.edit',compact('category'));
+
     }
 
     public function update(Requests\CategoryRequest $request, $id){
-        $this       ->categoryModel->find($id)->update($request->all());
+
+        $this       ->categoryModel->find($id)
+                                    ->update($request->all());
+
         return redirect()->route('categories');
 
     }
