@@ -59,5 +59,17 @@
             get('/{id?}/edit',['as'=>'products.edit', 'uses' =>'ProductsController@edit']);
             put('/{id?}',['as'=>'products.update', 'uses' =>'ProductsController@update']);
 
+            /*
+             * Rotas para images
+             */
+            Route::group(['prefix'=>'images'],function($id){
+
+                get('{id?}/product',['as'=>'images', 'uses'=>'ProductImageController@index']);
+                get('create/{id?}/product',['as'=>'images.create', 'uses'=> 'ProductImageController@create']);
+                post('{id}/product',['as'=>'images.store', 'uses' =>'ProductImageController@store']);
+                get('destroy/{id?}/product',['as'=>'images.destroy', 'uses' =>'ProductImageController@destroy']);
+
+            });
+
         });
     });

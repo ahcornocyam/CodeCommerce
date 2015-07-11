@@ -10,12 +10,15 @@ class Category extends Model
     protected $table    = 'Categories';
 
     protected $fillable =
-        [
-            'id',
-            'name',
-            'description'
-        ];
+                            [
+                                'id',
+                                'name',
+                                'description'
+                            ];
 
+    /*
+     *  Relacionamento com Product
+     */
     public function products(){
 
         return $this->hasMany('CodeCommerce\Product');
