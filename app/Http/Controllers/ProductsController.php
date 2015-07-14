@@ -4,14 +4,19 @@ namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Category;
 use CodeCommerce\Product;
+use CodeCommerce\ProductImage;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class ProductsController extends Controller
 {
     private $productModel;
+    private $productImage;
 
     /**
      * Display a listing of the resource.
@@ -19,10 +24,11 @@ class ProductsController extends Controller
      * @return Response
      */
 
-    public function __construct(Product $producs)
+    public function __construct(Product $producs, ProductImage $productImage)
     {
 
         $this->productModel = $producs;
+        $this->productImage = $productImage;
 
     }
 
@@ -118,8 +124,15 @@ class ProductsController extends Controller
     public function destroy($id)
     {
 
-        $product = $this->productModel->find($id)
-            ->delete();
+        $product    = $this->productModel->find($id);
+        $images      = $product->images;
+        foreach($images as $image){
+            $image->delete();
+            if(file_exists(public_path().'/uploads/'.$image->id.'.'.$image->extension)){
+                Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
+            }
+        }
+        $product->delete();
         return redirect()->route('products');
 
     }
