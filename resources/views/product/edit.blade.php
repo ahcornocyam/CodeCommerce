@@ -11,7 +11,8 @@
                         @endforeach
                     </ul>
                 @endif
-                @include('product.form')
+                {!! Form::model($product,['route'=>['products.update',$product->id],'method'=>'put']) !!}
+                    @include('product.form')
             </div>
         </div>
     @endsection

@@ -47,7 +47,7 @@ class CategoriesController extends Controller
 
     public function destroy($id){
 
-        $this->categoryModel->find($id)
+        $this       ->categoryModel->find($id)
                             ->delete();
 
         return redirect()->route('categories');

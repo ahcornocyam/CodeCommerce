@@ -11,7 +11,9 @@
                         @endforeach
                     </ul>
                 @endif
-                @include('product.form')
+                {!! Form::open(['route'=>['products.store'],'method'=>'post'])!!}
+                    @include('product.form')
+                {!! Form::close()!!}
             </div>
         </div>
     @endsection

@@ -11,7 +11,9 @@
                         @endforeach
                     </ul>
                 @endif
-                @include('category.form')
+                {!! Form::model($category,['route'=>['categories.update',$category->id],'method'=>'put']) !!}
+                    @include('category.form')
+                {!! Form::close()!!}
             </div>
         </div>
     @endsection

@@ -27,6 +27,7 @@ class ProductRequest extends Request
             'name'          => 'required|min:5|max:80',
             'description'   => 'required',
             'price'         => 'required|numeric',
+            'getTagListAttribute'          => 'required|unique:tags,name',
         ];
     }
 }

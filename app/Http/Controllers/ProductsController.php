@@ -27,16 +27,16 @@ class ProductsController extends Controller
     public function __construct(Product $producs, ProductImage $productImage)
     {
 
-        $this->productModel = $producs;
-        $this->productImage = $productImage;
+        $this   ->productModel      = $producs;
+        $this   ->productImage      = $productImage;
 
     }
 
     public function index()
     {
 
-        $products = $this->productModel
-            ->paginate(10);
+        $products       = $this->productModel
+                                ->paginate(10);
 
         return view('product.index', compact('products'));
 
@@ -51,7 +51,7 @@ class ProductsController extends Controller
     public function create(Category $category)
     {
 
-        $categories = $category->lists('name', 'id');
+        $categories     = $category->lists('name', 'id');
 
         return view('product.create', compact('categories'));
 
@@ -65,10 +65,13 @@ class ProductsController extends Controller
     public function store(Requests\ProductRequest $request)
     {
 
-        $input = $request->all();
-        $product = $this->productModel
+        $input      = $request->all();
+        $inputTags  = explode(' ',$request-> get('getTagListAttribute'));
+
+        $product    = $this->productModel
                          ->fill($input);
-        $product->save();
+
+        $product    ->save();
         return redirect()->route('products');
 
     }
@@ -81,10 +84,10 @@ class ProductsController extends Controller
      */
     public function edit($id, Category $category)
     {
-        $categories = $category->lists('name', 'id');
+        $categories     = $category->lists('name', 'id');
 
-        $product = $this->productModel
-            ->find($id);
+        $product        = $this->productModel
+                                ->find($id);
 
         return view('product.edit', compact('product', 'categories'));
 
@@ -99,7 +102,7 @@ class ProductsController extends Controller
     public function update(Requests\ProductRequest $request, $id)
     {
 
-        $input = $request->all();
+        $input      = $request->all();
 
         if (!array_key_exists('featured', $input)) {
             $input['featured'] = 0;
@@ -124,15 +127,19 @@ class ProductsController extends Controller
     public function destroy($id)
     {
 
-        $product    = $this->productModel->find($id);
-        $images      = $product->images;
+        $product        = $this->productModel->find($id);
+        $images         = $product->images;
+
         foreach($images as $image){
+
             $image->delete();
+
             if(file_exists(public_path().'/uploads/'.$image->id.'.'.$image->extension)){
                 Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
             }
         }
         $product->delete();
+
         return redirect()->route('products');
 
     }

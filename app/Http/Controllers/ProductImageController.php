@@ -17,8 +17,8 @@ class ProductImageController extends Controller
     protected $productImagesModel;
 
     public function __construct(Product $product, ProductImage $image){
-        $this->productModel         = $product;
-        $this->productImagesModel   = $image;
+        $this   ->productModel         = $product;
+        $this   ->productImagesModel   = $image;
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProductImageController extends Controller
      */
     public function index($id)
     {
-        $product = $this->productModel->find($id);
+        $product    = $this->productModel->find($id);
 
         return view('images.index',compact('product'));
     }
@@ -71,12 +71,15 @@ class ProductImageController extends Controller
      */
     public function destroy($id)
     {
-        $image = $this->productImagesModel->find($id);
-        $product_id = $image->product_id;
+        $image          = $this->productImagesModel->find($id);
+        $product_id     = $image->product_id;
+
         if(file_exists(public_path().'/uploads/'.$image->id.'.'.$image->extension)){
             Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
         }
+
         $image->delete();
+
         return redirect()->route('images',['id'=>$product_id]);
     }
 }
