@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="PublishConfigData" serverName="Code Commerce" />
+=======
+  <component name="PublishConfigData" serverName="CodeCommerce" />
+>>>>>>> 7f73b8f811b1412fd16da45dc8fb63c4dd009980
 </project>
