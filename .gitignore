@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-
-=======
 /vendor
 /node_modules
->>>>>>> 7f73b8f811b1412fd16da45dc8fb63c4dd009980
 Homestead.yaml
 .env

@@ -68,11 +68,22 @@ class ProductsController extends Controller
         $input      = $request->all();
         $inputTags  = explode(' ',$request-> get('getTagListAttribute'));
 
-        $product    = $this->productModel
-                         ->fill($input);
+        $a = ['a','b','c'];
 
-        $product    ->save();
-        return redirect()->route('products');
+        foreach($a as $i){
+            echo $i."\n";
+        }
+
+
+        $resp =  array_diff($inputTags,$a);
+
+      return $resp;
+
+
+        //$product    = $this->productModel->fill($input);
+
+        //$product    ->save();
+        //return redirect()->route('products');
 
     }
 
